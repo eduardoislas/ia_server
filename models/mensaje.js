@@ -15,6 +15,11 @@ const MensajeSchema = Schema({
     mensaje:{
         type: String,
         required: true
+    },
+    type:  {
+        type: Boolean,
+        required: false,
+        default: true
     }
 
 }, {

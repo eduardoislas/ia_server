@@ -25,18 +25,16 @@ io.on('connection', client => {
         io.to(payload.para).emit('mensaje-personal', payload);
     } );
 
+    //Escuchar del cliente el mensaje-chatbot
+    client.on('mensaje-chatbot', async (payload)=>{
+        await grabarMensaje(payload);
+        io.to(payload.para).emit('mensaje-chatbot', payload);
+    } );
 
 
     client.on('disconnect', () => {
         usuarioDesconectado(uid);
     });
-
-    // client.on('mensaje', ( payload ) => {
-    //     console.log('Mensaje', payload);
-
-    //     io.emit( 'mensaje', { admin: 'Nuevo mensaje' } );
-
-    // });
 
 
 });
