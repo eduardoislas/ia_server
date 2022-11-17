@@ -10,7 +10,7 @@ const generarJWT = (uid) => {
         };
     
         jwt.sign(payload, process.env.JWT_KEY, {
-            expiresIn: '48h'
+            expiresIn: '24h'
         }, (err, token) =>{
             if ( err ) {
                 reject('No se pudo generar el JWT');
@@ -19,8 +19,6 @@ const generarJWT = (uid) => {
             }
         })
     });
-
-
 }
 
 const comprobarJWT = ( token = '') => {
