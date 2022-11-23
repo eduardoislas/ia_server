@@ -1,5 +1,6 @@
 const Usuario = require('../models/usuario')
 const Mensaje = require('../models/mensaje')
+const log = require("../helpers/logs");
 
 const usuarioConectado = async (uid = '') => {
 
@@ -15,6 +16,8 @@ const usuarioDesconectado = async (uid = '') => {
     const usuario = await Usuario.findById(uid);
     usuario.online = false;
     await usuario.save();
+    //Registrar en la BDD el cierre de sesión
+    log.registrarLog(uid, 'Cerrar Sesión')
     return usuario;
 
 }
